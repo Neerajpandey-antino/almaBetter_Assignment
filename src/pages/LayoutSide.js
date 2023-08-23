@@ -5,8 +5,8 @@ import {
   CalendarOutlined,
   FolderOpenOutlined,
   BarChartOutlined,
-  LogoutOutlined ,
-  GlobalOutlined
+  LogoutOutlined,
+  GlobalOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
 import Link from "next/link";
@@ -27,24 +27,74 @@ const LayoutSide = () => {
   }
 
   const items = [
-    getItem(<Link href={"/"} ><span className="text-[#9A9A9A] text-[17px] font-normal ml-2">Overview</span></Link>,null, <HomeOutlined />),
+    getItem(
+      <Link href={"/"}>
+        <span className="text-[#9A9A9A] text-[17px] font-normal ml-2">
+          Overview
+        </span>
+      </Link>,
+      null,
+      <HomeOutlined />
+    ),
     getItem(
       <Link href={"/stats"} className="text-[black]">
-        <span className="text-[#9A9A9A] text-[17px] font-normal ml-2"> Stats</span>
-       
-      </Link>,null,
+        <span className="text-[#9A9A9A] text-[17px] font-normal ml-2">
+          {" "}
+          Stats
+        </span>
+      </Link>,
+      null,
       <BarChartOutlined />
     ),
 
-    getItem(<Link href={"/Dashboard"} ><span className="text-[#9A9A9A] text-[17px] font-normal ml-2">Projects</span></Link>,null,<FolderOpenOutlined />),
-    getItem(<Link href={"/chats"}><span className="text-[#9A9A9A] text-[17px] font-normal  ml-2">Chats</span></Link>,null, <MessageOutlined />),
-    getItem(<Link href={"/Calendar"}><span className="text-[#9A9A9A] text-[17px] font-normal  ml-2">Calendar</span></Link>,null, <CalendarOutlined />),
-    
-    getItem(<Link href={"/setting"}><span className="text-[#9A9A9A] text-[17px] font-normal  ml-2">Setting</span></Link>,null, <GlobalOutlined />),
-    getItem(<Link href={"/logout"}><span className="text-[#9A9A9A] text-[17px] font-normal  ml-2">Logout</span></Link>,null, <LogoutOutlined />),
-    
-   
+    getItem(
+      <Link href={"/Dashboard"}>
+        <span className="text-[#9A9A9A] text-[17px] font-normal ml-2">
+          Projects
+        </span>
+      </Link>,
+      null,
+      <FolderOpenOutlined />
+    ),
+    getItem(
+      <Link href={"/chats"}>
+        <span className="text-[#9A9A9A] text-[17px] font-normal  ml-2">
+          Chats
+        </span>
+      </Link>,
+      null,
+      <MessageOutlined />
+    ),
+    getItem(
+      <Link href={"/Calendar"}>
+        <span className="text-[#9A9A9A] text-[17px] font-normal  ml-2">
+          Calendar
+        </span>
+      </Link>,
+      null,
+      <CalendarOutlined />
+    ),
 
+    getItem(
+      <Link href={"/setting"}>
+        <span className="text-[#9A9A9A] text-[17px] font-normal  ml-2 py-40 ">
+          Setting
+        </span>
+      </Link>,
+      null,
+      <GlobalOutlined />
+    ),
+
+    getItem(
+      <Link href={"/logout"}>
+        <span className="text-[#9A9A9A] text-[17px] font-normal  ml-2">
+          {" "}
+          <Link href="/">Logout</Link>
+        </span>
+      </Link>,
+      null,
+      <LogoutOutlined />
+    ),
   ];
 
   return (
@@ -62,13 +112,14 @@ const LayoutSide = () => {
         onCollapse={(collapsed, type) => {
           console.log(collapsed, type);
         }}
-        style={{ height: "100vh" }} 
+        style={{ height: "100vh" }}
       >
         <div className="demo-logo-vertical" />
 
         {/* Here we are using images */}
         <div className="flex items-center">
-          <img src="/images/alma.png" alt="almaImage" /><span className="text-[#161616] text-xl font-medium">.taskez</span>
+          <img src="/images/alma.png" alt="almaImage" />
+          <span className="text-[#161616] text-xl font-medium">.taskez</span>
         </div>
 
         <Menu
@@ -77,11 +128,9 @@ const LayoutSide = () => {
           defaultSelectedKeys={["4"]}
           items={items}
           className="mt-11"
-          
         />
       </Sider>
       <Layout>
-       
         <Content
           style={{
             margin: " 0",
@@ -95,9 +144,8 @@ const LayoutSide = () => {
             }}
             className="border-r overflow-auto border-[#D9D9D9] no-scrollbar bg-[#FFFFFF]"
             theme="light"
-            
           >
-            <Projects/>
+            <Projects />
           </div>
         </Content>
       </Layout>

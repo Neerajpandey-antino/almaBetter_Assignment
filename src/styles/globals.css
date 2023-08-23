@@ -25,3 +25,16 @@
     )
     rgb(var(--background-start-rgb));
 } */
+.my-custom-tabs .ant-tabs-tab {
+  border: none; /* Remove the default border */
+  font-weight: bold; /* Customize the font weight */
+  font-size: 26px;
+font-style: normal;
+font-weight: 400;
+color: rgba(26, 59, 88, 0.33);
+}
+
+.my-custom-tabs .ant-tabs-tab-active {
+  /* background-color: #E6E6E6; */
+  color: yellow; /* Change the text color for active tabs */
+}

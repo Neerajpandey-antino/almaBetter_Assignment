@@ -1,48 +1,48 @@
 import { Button, Checkbox, Form, Input, Typography } from "antd";
 import Link from "next/link";
 import React, { useState } from "react";
+import axios from "axios"; // Import Axios
+import { useRouter } from "next/router";
+import { toast, ToastContainer } from "react-toastify"; // Import toast and ToastContainer
+
+import "react-toastify/dist/ReactToastify.css";
+
 
 
 const Login = () => {
+  const router = useRouter();
+
   const [form] = Form.useForm();
-  const [responseMessage, setResponseMessage] = useState('');
+  const [responseMessage, setResponseMessage] = useState("");
 
+  const onFinish = async (values) => {
+    console.log(values, "values");
 
+    try {
+      const response = await axios.post(
+        "https://2fc9-49-249-44-114.ngrok-free.app/api/v1/login",
+        {
+          // name: values.name,
+          email: values.email,
+          password: values.password,
+        }
+      );
 
-  
-const onFinish = async(values) => {
+      console.log("response", response.data);
 
-
-  try {
-    const response = await fetch('https://reqres.in/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: values.email,
-        password: values.password,
-      }),
-    });
-
-    const data = await response.json();
-
-    if (response.ok) {
-      setResponseMessage('Login successful!');
-      // Redirect to dashboard or perform other actions here
-    } else {
-      setResponseMessage(data.error || 'Login failed.');
+      if (response.status === 200) {
+        router.push("/Dashboard")
+        toast.success("Login successful!");
+        // setResponseMessage("Login successful!");
+      } else {
+        toast.error("Invalid Credentails!");
+        setResponseMessage(response.data.error || "Login failed.");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      setResponseMessage("An error occurred during login.");
     }
-  } catch (error) {
-    console.error('Login error:', error);
-    setResponseMessage('An error occurred during login.');
-  }
-  
-};
-const onFinishFailed = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
-
+  };
 
   return (
     <>
@@ -60,14 +60,14 @@ const onFinishFailed = (errorInfo) => {
           </Typography>
 
           <Form
-           form={form}
+            form={form}
             name="basic"
             layout="vertical"
             initialValues={{
               remember: true,
             }}
             onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
+            // onFinishFailed={onFinishFailed}
             autoComplete="off"
           >
             <Form.Item
@@ -115,7 +115,6 @@ const onFinishFailed = (errorInfo) => {
             >
               <Input.Password
                 placeholder="Password"
-                
                 className="p-3 "
                 style={{
                   width: "314px",
@@ -127,10 +126,9 @@ const onFinishFailed = (errorInfo) => {
             </Form.Item>
 
             <Form.Item>
-              <Link href="/Dashboard">
               <button
-                type="default"
-                htmlType="submit"
+                // type="default"
+                type="submit"
                 className=" w-full bg-[#BFBFBF] h-10  hover:bg-[#329C89] rounded-lg"
                 style={{ width: "314px", height: "45px" }}
               >
@@ -138,8 +136,6 @@ const onFinishFailed = (errorInfo) => {
                   Log In
                 </Typography>
               </button>
-              </Link>
-         
             </Form.Item>
 
             <div className="flex w-full justify-between">
@@ -150,7 +146,6 @@ const onFinishFailed = (errorInfo) => {
               </Form.Item>
             </div>
           </Form>
-          <p>{responseMessage}</p>
         </div>
       </div>
     </>

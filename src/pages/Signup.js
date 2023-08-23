@@ -1,52 +1,48 @@
 import { Button, Checkbox, Form, Input, Typography } from "antd";
 import Link from "next/link";
 import React, { useState } from "react";
+import axios from "axios"; // Import Axios
+import { toast, ToastContainer } from "react-toastify"; // Import toast and ToastContainer
 
-
+import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/router";
 
 
 const Signup = () => {
+  const router = useRouter();
   const [form] = Form.useForm();
-  const [responseMessage, setResponseMessage] = useState('');
+  const [responseMessage, setResponseMessage] = useState("");
 
-
-  const onFinish = async(values) => {
-
-
+  const  onFinish =  async(values) => {
     try {
-      const response = await fetch('https://reqres.in/api/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name:values.name,
-          email: values.email,
-          password: values.password,
-        }),
-      });
 
-      const data = await response.json();
-      console.log("datta",data);
+  localStorage.setItem("name",values.name)
+
+      const response = await axios.post("https://2fc9-49-249-44-114.ngrok-free.app/api/v1/register", {
+        name: values.name,
+        email: values.email,
+        password: values.password,
+      });
       
-      if (response.ok) {
-        setResponseMessage('Registration successful!');
+      console.log("response", response.data);
+
+      if (response.status === 200) {
+        router.push("/")
+        toast.success("Registration successful!");
+        
+        // setResponseMessage("Registration successful!");
       } else {
-        setResponseMessage(data.error || 'Registration failed.');
+        toast.error("Invalid Credentails!");
+
+        setResponseMessage(response.data.error || "Registration failed.");
+
       }
     } catch (error) {
-      console.error('Registration error:', error);
-      setResponseMessage('An error occurred during registration.');
+      console.error("Registration error:", error);
+      setResponseMessage("An error occurred during registration.");
     }
-
-    
+ 
   };
-
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
-
-  
 
   return (
     <>
@@ -56,14 +52,13 @@ const Signup = () => {
         <div>
           <Form
            form={form}
-            name="basic"
-            layout="vertical"
-            initialValues={{
-              remember: true,
-            }}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-            autoComplete="off"
+           name="basic"
+           layout="vertical"
+           initialValues={{
+             remember: true,
+           }}
+           onFinish={onFinish}
+           autoComplete="off"
           >
             <Form.Item
               name="name"
@@ -152,18 +147,18 @@ const Signup = () => {
             </Form.Item>
 
             <Form.Item>
-              <Link href="">
-              <button
-                type="default"
-                htmlType="submit"
-                className=" w-full bg-[#BFBFBF] h-10  hover:bg-[#329C89] rounded-lg"
-                style={{ width: "314px", height: "45px" }}
-              >
-                <Typography className="text-white w-full text-base font-bold font-sans ">
-                  Sign up
-                </Typography>
-              </button>
-              </Link>
+              {/* <Link href=""> */}
+                <button
+                  // type="default"
+                  type="submit"
+                  className=" w-full bg-[#BFBFBF] h-10  hover:bg-[#329C89] rounded-lg"
+                  style={{ width: "314px", height: "45px" }}
+                >
+                  <Typography className="text-white w-full text-base font-bold font-sans ">
+                    Sign up
+                  </Typography>
+                </button>
+              {/* </Link> */}
             </Form.Item>
 
             <div className="flex w-full justify-between">
@@ -174,7 +169,7 @@ const Signup = () => {
               </Form.Item>
             </div>
           </Form>
-          <p>{responseMessage}</p>
+          {/* <p>{responseMessage}</p> */}
         </div>
       </div>
     </>
