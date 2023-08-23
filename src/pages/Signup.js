@@ -18,7 +18,7 @@ const Signup = () => {
 
   localStorage.setItem("name",values.name)
 
-      const response = await axios.post("https://2fc9-49-249-44-114.ngrok-free.app/api/v1/register", {
+      const response = await axios.post("https://06d5-49-249-44-114.ngrok-free.app/api/v1/register", {
         name: values.name,
         email: values.email,
         password: values.password,

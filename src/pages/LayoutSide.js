@@ -29,7 +29,7 @@ const LayoutSide = () => {
   const items = [
     getItem(
       <Link href={"/"}>
-        <span className="text-[#9A9A9A] text-[17px] font-normal ml-2">
+        <span className="text-[#9A9A9A] text-[17px] font-bold ml-2">
           Overview
         </span>
       </Link>,
@@ -38,7 +38,7 @@ const LayoutSide = () => {
     ),
     getItem(
       <Link href={"/stats"} className="text-[black]">
-        <span className="text-[#9A9A9A] text-[17px] font-normal ml-2">
+        <span className="text-[#9A9A9A] text-[17px] font-bold ml-2">
           {" "}
           Stats
         </span>
@@ -49,7 +49,7 @@ const LayoutSide = () => {
 
     getItem(
       <Link href={"/Dashboard"}>
-        <span className="text-[#9A9A9A] text-[17px] font-normal ml-2">
+        <span className="text-[#9A9A9A] text-[17px] font-bold ml-2">
           Projects
         </span>
       </Link>,
@@ -58,7 +58,7 @@ const LayoutSide = () => {
     ),
     getItem(
       <Link href={"/chats"}>
-        <span className="text-[#9A9A9A] text-[17px] font-normal  ml-2">
+        <span className="text-[#9A9A9A] text-[17px] font-bold  ml-2">
           Chats
         </span>
       </Link>,
@@ -67,7 +67,7 @@ const LayoutSide = () => {
     ),
     getItem(
       <Link href={"/Calendar"}>
-        <span className="text-[#9A9A9A] text-[17px] font-normal  ml-2">
+        <span className="text-[#9A9A9A] text-[17px] font-bold  ml-2">
           Calendar
         </span>
       </Link>,
@@ -77,7 +77,7 @@ const LayoutSide = () => {
 
     getItem(
       <Link href={"/setting"}>
-        <span className="text-[#9A9A9A] text-[17px] font-normal  ml-2 py-40 ">
+        <span className="text-[#9A9A9A] text-[17px] font-bold  ml-2 py-40 ">
           Setting
         </span>
       </Link>,
@@ -87,7 +87,7 @@ const LayoutSide = () => {
 
     getItem(
       <Link href={"/logout"}>
-        <span className="text-[#9A9A9A] text-[17px] font-normal  ml-2">
+        <span className="text-[#9A9A9A] text-[17px] font-bold  ml-2">
           {" "}
           <Link href="/">Logout</Link>
         </span>
@@ -101,8 +101,8 @@ const LayoutSide = () => {
     <Layout>
       <Sider
         width="18vw"
-        height="100vh"
-        className="border-r overflow-hidden border-[#D9D9D9] no-scrollbar p-6"
+        height="auto"
+        className="border-hidden overflow-hidden no-scrollbar p-6"
         theme="light"
         breakpoint="lg"
         collapsedWidth="0"
@@ -112,7 +112,7 @@ const LayoutSide = () => {
         onCollapse={(collapsed, type) => {
           console.log(collapsed, type);
         }}
-        style={{ height: "100vh" }}
+  
       >
         <div className="demo-logo-vertical" />
 

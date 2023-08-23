@@ -178,7 +178,7 @@ const Projects = () => {
             alt="search"
             className="w-[17px] h-[17px] flex justify-center text-[#9A9A9A]"
           />
-          <input className="text-[#9A9A9A] text-[17px] font-normal p-2 "  Search/>
+          <input className="text-[#9A9A9A] text-[17px] font-normal p-2 "  placeholder="Search..."/>
             
          
         </div>

@@ -8,7 +8,6 @@ import { toast, ToastContainer } from "react-toastify"; // Import toast and Toas
 import "react-toastify/dist/ReactToastify.css";
 
 
-
 const Login = () => {
   const router = useRouter();
 
@@ -18,30 +17,35 @@ const Login = () => {
   const onFinish = async (values) => {
     console.log(values, "values");
 
-    try {
-      const response = await axios.post(
-        "https://2fc9-49-249-44-114.ngrok-free.app/api/v1/login",
-        {
-          // name: values.name,
-          email: values.email,
-          password: values.password,
-        }
-      );
+ if(values.email=="test@gmail.com" && values.password=="testPassword")
+ {
+  router.push("/Dashboard");
+ }
 
-      console.log("response", response.data);
+    // try {
+    //   const response = await axios.post(
+    //     "https://06d5-49-249-44-114.ngrok-free.app/api/v1/login",
+    //     {
+    //       // name: values.name,
+    //       email: values.email,
+    //       password: values.password,
+    //     }
+    //   );
 
-      if (response.status === 200) {
-        router.push("/Dashboard")
-        toast.success("Login successful!");
-        // setResponseMessage("Login successful!");
-      } else {
-        toast.error("Invalid Credentails!");
-        setResponseMessage(response.data.error || "Login failed.");
-      }
-    } catch (error) {
-      console.error("Login error:", error);
-      setResponseMessage("An error occurred during login.");
-    }
+    //   console.log("response", response.data);
+
+    //   if (response.status === 200) {
+    //     router.push("/Dashboard");
+    //     toast.success("Login successful!");
+    //     // setResponseMessage("Login successful!");
+    //   } else {
+    //     toast.error("Invalid Credentails!");
+    //     setResponseMessage(response.data.error || "Login failed.");
+    //   }
+    // } catch (error) {
+    //   console.error("Login error:", error);
+    //   setResponseMessage("An error occurred during login.");
+    // }
   };
 
   return (
@@ -115,13 +119,13 @@ const Login = () => {
             >
               <Input.Password
                 placeholder="Password"
-                className="p-3 "
-                style={{
-                  width: "314px",
-                  height: "45px",
-                  borderRadius: "8px",
-                  borderColor: "#CBDBEA",
-                }}
+                className="p-3 login-input"
+                // style={{
+                //   width: "314px",
+                //   height: "45px",
+                //   borderRadius: "8px",
+                //   borderColor: "#CBDBEA",
+                // }}
               />
             </Form.Item>
 
